@@ -1,0 +1,125 @@
+
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+var dataAxis = ['POLK','LINN','SCOTT','BLACK HAWK','JOHNSON','POTTAWATTA','WOODBURY','STORY','DUBUQUE','CERRO GORD','DES MOINES','MUSCATINE','DALLAS','DICKINSON','CLINTON','LEE','MARSHALL','WAPELLO','WEBSTER','WARREN','MARION','JASPER','POWESHIEK','CLAY','OBRIEN','WASHINGTON','BREMER','BOONE','BUENA VIST','CARROLL','SIOUX','MAHASKA','KOSSUTH','BENTON','HARDIN','PLYMOUTH','JONES','IOWA','JACKSON','PAGE','WINNESHIEK','HARRISON','UNION','CASS','PALO ALTO','BUCHANAN','WINNEBAGO','FLOYD','HAMILTON','MONONA','ALLAMAKEE','HENRY','FAYETTE','CEDAR','JEFFERSON','LYON','CRAWFORD','MILLS','MADISON','DELAWARE','CLAYTON','CHEROKEE','WRIGHT','APPANOOSE','HOWARD','SAC','TAMA','EMMET','CLARKE','GUTHRIE','SHELBY','KEOKUK','HUMBOLDT','FRANKLIN','MITCHELL','LUCAS','IDA','MONTGOMERY','HANCOCK','POCAHONTAS','OSCEOLA','GRUNDY','BUTLER','ADAIR','CHICKASAW','GREENE','LOUISA','WORTH','VAN BUREN','MONROE','AUDUBON','CALHOUN','ADAMS','TAYLOR','DECATUR','DAVIS','RINGGOLD','WAYNE','FREMONT'
+];
+var data = [189198,83435,59575,58165,51005,34285,32228,30433,25393,21327,14764,
+14245,13344,13247,12395,12308,11323,11236,10866,9892,9483,7980,7913,7675,7417,7365,
+7323,7129,7008,6798,6164,6001,5903,5892,5815,5734,5404,5325,5132,5129,5000,4866,4782,4694,
+4674,4494,4478,4331,4327,4238,3980,3936,3928,3927,3837,3809,3788,3749,3698,3389,3345,3333,
+3181,3063,3036,2973,2967,2805,2801,2768,2766,2730,2600,2452,2383,2352,2272,2124,1778,1735,
+1709,1612,1590,1585,1565,1517,1474,1405,1246,1213,1197,1187,932,828,819,770,593,575,212];
+var yMax = 500;
+var dataShadow = [];
+
+for (var i = 0; i < data.length; i++) {
+    dataShadow.push(yMax);
+}
+
+option = {
+    title: {
+        text: 'Number of liqour  orders in different counties',
+        subtext: 'Click to Zoom'
+    },
+    xAxis: {
+        data: dataAxis,
+        axisLabel: {
+            inside: true,
+            textStyle: {
+                color: '#fff'
+            }
+        },
+        axisTick: {
+            show: false
+        },
+        axisLine: {
+            show: false
+        },
+        z: 10
+    },
+    yAxis: {
+        axisLine: {
+            show: false
+        },
+        axisTick: {
+            show: false
+        },
+        axisLabel: {
+            textStyle: {
+                color: '#999'
+            }
+        }
+    },
+    dataZoom: [
+        {
+            type: 'inside'
+        }
+    ],
+    series: [
+        {
+            type: 'bar',
+            showBackground: true,
+            itemStyle: {
+                color: new echarts.graphic.LinearGradient(
+                    0, 0, 0, 1,
+                    [
+                        {offset: 0, color: '#83bff6'},
+                        {offset: 0.5, color: '#188df0'},
+                        {offset: 1, color: '#188df0'}
+                    ]
+                )
+            },
+            emphasis: {
+                itemStyle: {
+                    color: new echarts.graphic.LinearGradient(
+                        0, 0, 0, 1,
+                        [
+                            {offset: 0, color: '#2378f7'},
+                            {offset: 0.7, color: '#2378f7'},
+                            {offset: 1, color: '#83bff6'}
+                        ]
+                    )
+                }
+            },
+            data: data
+        }
+    ]
+};
+
+// Enable data zoom when user click bar.
+var zoomSize = 6;
+myChart.on('click', function (params) {
+    console.log(dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)]);
+    myChart.dispatchAction({
+        type: 'dataZoom',
+        startValue: dataAxis[Math.max(params.dataIndex - zoomSize / 2, 0)],
+        endValue: dataAxis[Math.min(params.dataIndex + zoomSize / 2, data.length - 1)]
+    });
+});
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    

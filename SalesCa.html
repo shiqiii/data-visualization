@@ -1,0 +1,316 @@
+
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+    
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+var legenddata = [
+                {name:'American Vodka', Confirmed:22222845}, 
+                {name:'CanadianWhiskies', Confirmed:17577318 },
+                {name:'Straight Bourbon Whiskies', 	Confirmed:12061492 },
+                {name:'Whiskey Liqueur', Confirmed:8776347 },
+                {name:'Spiced Rum', Confirmed:8719170 },
+                {name:'100% Agave Tequila', Confirmed:6801831 },
+                {name:'Imported Brandies', Confirmed:6103264 },
+                {name:'Tennessee Whiskies', Confirmed:5775999 },
+                {name:'Imported Vodka', Confirmed:5765809 },
+                {name:'Blended Whiskies', Confirmed:5000016 },
+                {name:'American Flavored Vodka', Confirmed:4106917 },
+                {name:'Cocktails RTD', Confirmed:3686413 },
+                {name:'Mixto Tequila', Confirmed:3663435 },
+                {name:'Imported Cordials & Liqueur',Confirmed: 3638475 },
+                {name:'Irish Whiskies', Confirmed:3310791},
+                {name:'Temporary&SpecialtyPackages,Temporary', Confirmed:3308699 },
+                {name:'Cream Liqueurs', Confirmed:3109358 },
+                {name:'Flavored Rum', Confirmed:2941016 },
+                {name:'White Rum', Confirmed:497867}, 
+                {name:'American Schnapps', Confirmed:2244641 },
+                {name:'Imported Flavored Vodka', Confirmed:2165647 },
+                {name:'Scotch Whiskies', Confirmed:2160721}, 
+                {name:'Imported Schnapps', Confirmed:2102897 },
+                {name:'American Brandies', Confirmed:1933432}, 
+                {name:'Imported Dry Gins', Confirmed:1904723 },
+                {name:'Single Malt Scotch', Confirmed:1711653 },
+                {name:'Straight Rye Whiskies', Confirmed:1643771 },
+                {name:'American Dry Gins', Confirmed:1506625}, 
+                {name:'American Cordials&Liqueur', Confirmed:1378308 },
+                {name:'Special Order Items', Confirmed:874386 },
+                {name:'Neutral Grain Spirits ', Confirmed:672233 },
+                {name:'Coffee Liqueurs', Confirmed:667755 },
+                {name:'Imported Distilled Spirit Specialty', Confirmed:665854}, 
+                {name:'Gold Rum', Confirmed:485767 },
+                {name:'American Distilled Spirit Specialty', Confirmed:458814 },
+                {name:'Single Barrel Bourbon Whiskies', Confirmed:359586 },
+                {name:'Aged Dark Rum', Confirmed:336965 },
+                {name:'Triple Sec', Confirmed:306138 },
+                {name:'Bottled in Bond Bourbon', Confirmed:200060 },
+                {name:'Corn Whiskies', Confirmed:157335 },
+                {name:'Mezcal', Confirmed:108566 },
+                {name:'Flavored Gin', Confirmed:43108 },
+    ],
+    option = {
+        dataset: {
+            source: [
+                ['Country', 'Confirmed','SQRT'],
+                ['American Vodka', 22222845,4714], 
+                ['CanadianWhiskies',17577318,4193 ],
+                ['Straight Bourbon Whiskies', 12061492,3473 ],
+                ['Whiskey Liqueur', 8776347,2962 ],
+                ['Spiced Rum', 8719170,2953],
+                ['100% Agave Tequila', 6801831,2608],
+                ['Imported Brandies', 6103264,2470 ],
+                ['Tennessee Whiskies', 5775999 ,2403 ],
+                ['Imported Vodka', 5765809,2401],
+                ['Blended Whiskies', 5000016,2236],
+                ['American Flavored Vodka', 4106917 ,2027],
+                ['Cocktails RTD', 3686413 ,1920 ],
+                ['Mixto Tequila', 3663435,1914  ],
+                ['Imported Cordials & Liqueur', 3638475 ,1907],
+                ['Irish Whiskies', 3310791 ,1820],
+                ['Temporary&SpecialtyPackages,Temporary', 1819],
+                ['Cream Liqueurs', 3109358,1763 ],
+                ['Flavored Rum', 2941016,1715],
+                ['White Rum', 2497867, 1580], 
+                ['American Schnapps', 2244641,1498 ],
+                ['Imported Flavored Vodka', 2165647,1472],
+                ['Scotch Whiskies', 2160721,1470 ], 
+                ['Imported Schnapps', 2102897,1450 ],
+                ['American Brandies', 1933432,1390], 
+                ['Imported Dry Gins', 1904723,1380],
+                ['Single Malt Scotch', 1711653,1308 ],
+                ['Straight Rye Whiskies', 1643771,1282 ],
+                ['American Dry Gins', 1506625,1227], 
+                ['American Cordials&Liqueur', 1378308,1174 ],
+                ['Special Order Items', 874386,935 ],
+                ['Neutral Grain Spirits ', 672233,820 ],
+                ['Coffee Liqueurs', 667755,817 ],
+                ['Imported Distilled Spirit Specialty', 665854,816], 
+                ['Gold Rum', 485767,697 ],
+                ['American Distilled Spirit Specialty', 458814,677 ],
+                ['Single Barrel Bourbon Whiskies', 359586,600 ],
+                ['Aged Dark Rum', 336965,580 ],
+                ['Triple Sec', 306138,553 ],
+                ['Bottled in Bond Bourbon', 200060,447 ],
+                ['Corn Whiskies', 157335,397],
+                ['Mezcal', 108566,329],
+                ['Flavored Gin', 43108,208],
+            ],
+        },
+        toolbox: {
+            show: true, 
+            feature: {
+                saveAsImage: { show: true, type: 'jpeg' },
+            },
+        },
+        title: {
+            text: 'Sales of different liquor categories',
+            x: '45%',
+            y: '200',
+            textStyle: { fontSize: 27, fontWeight: 'bold', fontFamily: 'Microsoft YaHei', color: '#000' },
+            subtextStyle: {
+                fontStyle: 'italic',
+                fontSize: 16,
+            },
+        },
+        legend: {
+            x: '48%', 
+            y: '280', 
+            align: 'left', 
+            orient: 'vertical', 
+            icon: 'circle', 
+       
+            textStyle: {
+                fontFamily: 'Microsoft YaHei',
+                color: '#000',
+                fontSize: 11
+            },
+            data: [
+                    'American Vodka', 
+                    'CanadianWhiskies',
+                    'Straight Bourbon Whiskies',
+                    'Whiskey Liqueur',
+                    'Spiced Rum',
+                    '100% Agave Tequila',
+                    'Imported Brandies',
+                    'Tennessee Whiskies',
+                    'Imported Vodka',
+                    'Blended Whiskies',
+                    'American Flavored Vodka',
+                    'Cocktails RTD',
+                    'Mixto Tequila',
+                    'Imported Cordials & Liqueur', 
+                    'Irish Whiskies',
+                    'Temporary&SpecialtyPackages,Temporary', 
+                    'Cream Liqueurs',
+                    'Flavored Rum',
+                    'White Rum',
+                    'American Schnapps',
+                    'Imported Flavored Vodka',
+                    'Scotch Whiskies',
+                    'Imported Schnapps',
+                    'American Brandies',
+                    'Imported Dry Gins',
+                    'Single Malt Scotch',
+                    'Straight Rye Whiskies',
+                    'American Dry Gins',
+                    'American Cordials&Liqueur',
+                    'Special Order Items',
+                    'Neutral Grain Spirits ',
+                    'Coffee Liqueurs',
+                    'Imported Distilled Spirit Specialty',
+                    'Gold Rum',
+                    'American Distilled Spirit Specialty',
+                    'Single Barrel Bourbon Whiskies',
+                    'Aged Dark Rum',
+                    'Triple Sec',
+                    'Bottled in Bond Bourbon',
+                    'Corn Whiskies',
+                    'Mezcal',
+                    'Flavored Gin',
+            ],
+            formatter: function (params) {
+                console.log('图例参数', params);
+                for (var i = 0; i < legenddata.length; i++) {
+                    if (legenddata[i].name == params) {
+                        return params + ':$' + legenddata[i].Confirmed ;
+                    }
+                }
+            },
+        },
+
+        calculable: true,
+        series: [
+            {
+                name: '半径模式',
+                type: 'pie',
+                clockWise: false,
+                radius: [40, 400],
+                center: ['40%', '60%'],
+                roseType: 'area',
+                encode: {
+                    itemName: 'Country',
+                    value: 'SQRT',
+                },
+                itemStyle: {
+                    normal: {
+                        color: function (params) {
+                            var colorList = [
+                                '#a71a4f',
+                                '#bc1540',
+                                '#c71b1b',
+                                '#d93824',
+                                '#ce4018',
+                                '#d15122',
+                                '#e7741b',
+                                '#e58b3d',
+                                '#e59524',
+                                '#dc9e31',
+                                '#da9c2d',
+                                '#d2b130',
+                                '#bbd337',
+                                '#8cc13f',
+                                '#67b52d',
+                                '#53b440',
+                                '#48af54',
+                                '#479c7f',
+                                '#48a698',
+                                '#57868c',
+                                '#BDB76B',
+                                '#EEE8AA',
+                                '#F0E68C',
+                                '#DAA520',
+                                '#F5DEB3',          
+                                '#FFE4B5',
+                                '#FFA500',
+                                '#FFEBCD',
+                                '#FFDEAD',
+                                '#FAEBD7',
+                                '#D2B48C',
+                                '#DEB887',
+                                '#FFE4C4',
+                                '#FF8C00',
+                                '#FAF0E6',
+                                '#CD853F',
+                                '#FFB6C1',
+                                '#FFC0CB',
+                                '#DC143C',
+                                '#DB7093',
+                                '#0000FF',
+                                '#0000CD',
+                                '#191970',
+                                '#00008B',
+
+                            ];
+                            return colorList[params.dataIndex];
+                        },
+                        label: {
+                            position: 'inside',
+                            textStyle: {
+                                fontWeight: 'bold',
+                                fontFamily: 'Microsoft YaHei',
+                                color: '#000000',
+                                fontSize: 10,
+                            },
+                       
+                            formatter: function (params) {
+                                console.log('参数列表', params);
+                                if (params.data[1] > 5000000) {
+                                    return (
+                                        params.data[0] +
+                                        '\n' +
+                                        params.data[1] 
+                                    );
+                                } else {
+                                    return '';
+                                }
+                            },
+                        },
+                    },
+                },
+            },
+            {
+                name: '透明圆圈',
+                type: 'pie',
+                radius: [10, 27],
+                center: ['40%', '60%'],
+                itemStyle: {
+                    color: 'rgba(250, 250, 250, 0.3)',
+                },
+                data: [{ value: 10, name: '' }],
+            },
+            {
+                name: '透明圆圈',
+                type: 'pie',
+                radius: [10, 35],
+                center: ['40%', '60%'],
+                itemStyle: {
+                    color: 'rgba(250, 250, 250, 0.3)',
+                },
+                data: [{ value: 10, name: '' }],
+            },
+        ],
+    };
+
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    

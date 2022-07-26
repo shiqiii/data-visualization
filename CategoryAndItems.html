@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Category</title>
+    <meta charset="utf-8" />
+
+    <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+    <style >
+      /* Add space between Vega-Embed links  */
+      .vega-actions a {
+        margin-right: 5px;
+      }
+
+    </style>
+  </head>
+  <body style="text-align:center">
+    <h2>Item numbers of category</h2>
+    <!-- Container for the visualization -->
+    <div id="vis" ></div>
+
+    <script>
+      // Assign the specification to a local variable vlSpec.
+      var vlSpec = {
+        $schema: 'https://vega.github.io/schema/vega-lite/v5.json',
+        data: {
+          values: [
+    {Category: "Special Order Items", ItemNumber: 370},
+    {Category: "Temporary  & Specialty Packages", ItemNumber: 315},
+    {Category: "Straight Bourbon Whiskies", ItemNumber: 248},
+    {Category: "American Flavored Vodka", ItemNumber: 187},
+    {Category: "100% Agave Tequila", ItemNumber: 186},
+    {Category: "Single Malt Scotch", ItemNumber: 130},
+    {Category: "Blended Whiskies", ItemNumber: 129},
+    {Category: "American Vodka ", ItemNumber: 129},
+    {Category: "Cocktails /RTD", ItemNumber: 122},
+    {Category: "Imported Cordials & Liqueur ", ItemNumber: 119},
+    {Category: "American Cordials & Liqueur ", ItemNumber: 112},
+    {Category: "Scotch Whiskies", ItemNumber: 92},
+    {Category: "American Schnapps", ItemNumber: 92},
+    {Category: "Straight Rye Whiskies", ItemNumber: 87},
+    {Category: "Canadian Whiskies", ItemNumber: 85},
+    {Category: "Flavored Rum", ItemNumber: 82},
+    {Category: "Imported Flavored Vodka", ItemNumber: 81},
+    {Category: "Irish Whiskies", ItemNumber: 64},
+    {Category: "American Dry Gins", ItemNumber: 64},
+    {Category: "Aged Dark Rum", ItemNumber: 64},
+    {Category: "Imported Brandies", ItemNumber: 63},
+    {Category: "American Distilled Spirit Specialty ", ItemNumber: 58},
+    {Category: "Cream Liqueurs", ItemNumber: 57},
+    {Category: "American Brandies", ItemNumber: 56},
+    {Category: "Imported Vodka ", ItemNumber: 54},
+    {Category: "Imported Distilled Spirit Specialty ", ItemNumber: 53},
+    {Category: "White Rum", ItemNumber: 52},
+    {Category: "Gold Rum", ItemNumber: 46},
+    {Category: "Imported Dry Gins", ItemNumber: 45},
+    {Category: "Tennessee Whiskies", ItemNumber: 41},
+    {Category: "Neutral Grain Spirits ", ItemNumber: 40},
+    {Category: "Whiskey Liqueur", ItemNumber: 38},
+    {Category: "Spiced Rum", ItemNumber: 34},
+    {Category: "Mezcal", ItemNumber: 31},
+    {Category: "Single Barrel Bourbon Whiskies", ItemNumber: 30},
+    {Category: "Corn Whiskies", ItemNumber: 30},
+    {Category: "Mixto Tequila", ItemNumber: 27},
+    {Category: "Bottled in Bond Bourbon", ItemNumber: 26},
+    {Category: "Flavored Gin", ItemNumber: 16},
+    {Category: "Imported Schnapps", ItemNumber: 15},
+    {Category: "Coffee Liqueurs", ItemNumber: 14},
+    {Category: "Triple Sec", ItemNumber: 9}
+          ]
+    },
+          "params": [
+          {
+            "name": "highlight",
+            "select": {"type": "point", "on": "mouseover"}
+          },
+          {"name": "select", "select": "point"}
+        ],
+        mark: {"type":'bar',
+      "fill":"#99ffff",  
+      "cursor": "pointer"
+      },
+        encoding: {
+          y: {field: 'ItemNumber', type: 'quantitative'},
+          x: {
+            field: 'Category',
+            type: 'nominal',
+          },
+          "fillOpacity": {
+      "condition": {"param": "select", "value": 1},
+      "value": 0.3
+    },
+        }
+      };
+
+      // Embed the visualization in the container with id `vis`
+      vegaEmbed('#vis', vlSpec);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,147 @@
+<!--
+    THIS EXAMPLE WAS DOWNLOADED FROM https://echarts.apache.org/examples/zh/editor.html?c=bubble-gradient
+-->
+<!DOCTYPE html>
+<html style="height: 100%">
+    <head>
+        <meta charset="utf-8">
+    </head>
+    <body style="height: 100%; margin: 0">
+        <div id="container" style="height: 100%"></div>
+
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/echarts.min.js"></script>
+        <!-- Uncomment this line if you want to dataTool extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/dataTool.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use gl extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-gl@2/dist/echarts-gl.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to echarts-stat extension
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts-stat@latest/dist/ecStat.min.js"></script>
+        -->
+        <!-- Uncomment this line if you want to use map
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/china.js"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/map/js/world.js"></script>
+        -->
+        <!-- Uncomment these two lines if you want to use bmap extension
+        <script type="text/javascript" src="https://api.map.baidu.com/api?v=2.0&ak=<Your Key Here>"></script>
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts@5/dist/extension/bmap.min.js"></script>
+        -->
+
+        <script type="text/javascript">
+var dom = document.getElementById("container");
+var myChart = echarts.init(dom);
+var app = {};
+
+var option;
+
+
+
+var data = [
+    [[83688,6.34,13200,'INV-30852400189,Titos Handmade Vodka,13200 bottles',1990],[39289,7.8,5037,'INV-30498200003,Crown Royal w/NFL Jersey Bag,5037 bottles',1990],[38376,7.8,4920,'INV-30676500001,Crown Royal,4920 bottles',1990],[25935,8.75,2964,'INV-30678700004,Makers Mark,2964 bottles',1990],[25106,12.67,3960,'INV-27976100134,Titos Handmade Vodka,3960 bottles',1990],[24000,5,4800,'INV-30603400004,Titos Handmade Vodka,4800 bottles',1990],[19800,8.25,2400,'INV-30678100001,Baileys Original Irish Cream,2400 bottles',1990],[18225,11.25,1620,'INV-30783900001,Woodford Reserve,1620 bottles',1990],[17118,6.34,2700,'INV-24661100007,Titos Handmade Vodka,2700 bottles',1990],[17100,9.5,1800,'INV-30491300002,Titos Handmade Vodka,1800 bottles',1990],[16830,8.25,2040,'INV-30603700003,Jameson,2040 bottles',1990],[16290,9.05,1800,'INV-30603400013,Cedar Ridge Bourbon,1800 bottles',1990],[15725,7.8,2016,'INV-30024000072,Crown Royal Regal Apple,2016 bottles',1990],[13114,4.53,2895,'INV-30678200001,Captain Morgan Original Spiced,2895 bottles',1990],[13087,7.79,1680,'INV-30786000003,Jack Daneils Old,1680 bottles',1990]],
+    
+];
+
+option = {
+    backgroundColor: new echarts.graphic.RadialGradient(0.3, 0.3, 0.8, [{
+        offset: 0,
+        color: '#f7f8fa'
+    }, {
+        offset: 1,
+        color: '#cdd0d5'
+    }]),
+    title: {
+        text: 'The order income and the difference between state bottle retail&cost(USD)' ,
+        subtext:'The size of the bubble represents the number of bottle sold',
+        left: '5%',
+        top: '3%'
+    },
+    
+    grid: {
+        left: '8%',
+        top: '10%'
+    },
+    xAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        }
+    },
+    yAxis: {
+        splitLine: {
+            lineStyle: {
+                type: 'dashed'
+            }
+        },
+        scale: true
+    },
+    series: [{
+        name: '1990',
+        data: data[0],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]);
+        },
+        emphasis: {
+            focus: 'series',
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(120, 36, 50, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(251, 118, 123)'
+            }, {
+                offset: 1,
+                color: 'rgb(204, 46, 72)'
+            }])
+        }
+    }, {
+        name: '2015',
+        data: data[1],
+        type: 'scatter',
+        symbolSize: function (data) {
+            return Math.sqrt(data[2]) / 5e2;
+        },
+        emphasis: {
+            focus: 'series',
+            label: {
+                show: true,
+                formatter: function (param) {
+                    return param.data[3];
+                },
+                position: 'top'
+            }
+        },
+        itemStyle: {
+            shadowBlur: 10,
+            shadowColor: 'rgba(25, 100, 150, 0.5)',
+            shadowOffsetY: 5,
+            color: new echarts.graphic.RadialGradient(0.4, 0.3, 1, [{
+                offset: 0,
+                color: 'rgb(129, 227, 238)'
+            }, {
+                offset: 1,
+                color: 'rgb(25, 183, 207)'
+            }])
+        }
+    }]
+};
+
+if (option && typeof option === 'object') {
+    myChart.setOption(option);
+}
+
+        </script>
+    </body>
+</html>
+    
